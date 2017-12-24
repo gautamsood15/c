@@ -1,0 +1,71 @@
+//implimentation of stack as linked list
+#include<stdio.h>
+#include<stdlib.h>
+int check=-1;
+struct node
+{
+	int data;
+	struct node *next;
+}*head,*ht,*temp;
+void push()	// to add a value to the linked list
+{
+	temp=(struct node *)malloc(sizeof(struct node));
+	temp->next=NULL;
+	printf("enter the data : ");
+	scanf(" %d",&temp->data);
+	if(head==NULL)
+		head=temp;
+	else
+	{
+		ht=head;
+		while(ht->next!=NULL)
+		{
+			ht=ht->next;
+		}
+		ht->next=temp;
+	}
+}
+
+void pop() 	// to remove topmost value of the linked list
+{
+	if(check!=1 && head!=NULL)
+	{
+		if(check==0)
+			check=1;
+		for(ht=head,temp=head;ht->next!=NULL;ht=ht->next,temp->next=ht);
+			printf("the value poped is : %d\n",ht->data);
+		temp->next=NULL;
+		if(temp==head 	&& check!=1)	//this is done so that 
+		{								//the value at head can also
+			check=0;					// be used i.e once temp
+		}								//reaches head the if statement
+	}									//can be executed only once.
+	else
+	{
+		printf("stack underflow: \n");
+		exit(0);
+	}
+}
+
+void main()
+{
+	char ch='y';
+	while(ch=='y')
+	{
+		printf("to insert enter 'i' and to remove enter 'r' :-  ");
+		scanf(" %c",&ch);
+		if(ch=='i')
+		{
+			push();
+		}
+		else if(ch=='r')
+			pop();
+		else
+		{
+			printf("wrong choice enter again\n");
+			main();
+		}
+		printf("enter 'y' to insert or remove again : ");
+		scanf(" %c",&ch);
+	}
+}

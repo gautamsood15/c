@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+
+struct node
+{
+  int data;
+  struct node * link;
+};
+
+typedef struct node  NODE;
+void display(NODE *);
+void add(NODE *,int );
+
+int main()
+{
+  NODE *head=NULL;
+  add(head,1);
+  display(head);
+  printf("\n");
+  getch();
+  return 0;
+}
+
+void display(NODE *pt)
+{
+  while(pt!=NULL)
+  {
+    printf("element is");
+    printf("%d",pt->data);
+    pt=pt->link;
+  }
+}
+
+void add(NODE *q,int num)
+{
+  NODE *temp;
+  temp = q;
+  if(q==NULL)
+  {
+    q=(NODE *)malloc(sizeof(struct node));
+    temp = q;
+  }
+  else
+  {
+    while((temp=temp->link)!=NULL);
+    temp->link = (NODE *)malloc(sizeof(struct node));
+    temp=temp->link;
+  }
+
+  temp->data = num;
+  temp->link  = NULL;
+}

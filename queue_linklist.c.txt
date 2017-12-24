@@ -1,0 +1,65 @@
+//implimentation of queue as linked list
+#include<stdio.h>
+#include<stdlib.h>
+int check=-1;
+struct node
+{
+	int data;
+	struct node *next;
+}*head,*ht,*temp;
+void push()	// to add a value to the linked list
+{
+	temp=(struct node *)malloc(sizeof(struct node));
+	temp->next=NULL;
+	printf("enter the data : ");
+	scanf(" %d",&temp->data);
+	if(head==NULL)
+		head=temp;
+	else
+	{
+		ht=head;
+		while(ht->next!=NULL)
+		{
+			ht=ht->next;
+		}
+		ht->next=temp;
+	}
+}
+void pop()
+{
+	if(head==NULL)
+	{
+		printf("stack underflow: \n");
+		exit(0);
+	}
+	else
+	{
+		printf("value removed is %d\n",head->data);
+		temp=head->next;
+		head->next=NULL;
+		head=temp;
+	}
+}
+void main()
+{
+	head=NULL;
+	char ch='y';
+	while(ch=='y')
+	{
+		printf("to insert enter 'i' and to remove enter 'r' :-  ");
+		scanf(" %c",&ch);
+		if(ch=='i')
+		{
+			push();
+		}
+		else if(ch=='r')
+			pop();
+		else
+		{
+			printf("wrong choice enter again\n");
+			main();
+		}
+		printf("enter 'y' to insert or remove again : ");
+		scanf(" %c",&ch);
+	}
+}

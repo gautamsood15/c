@@ -1,0 +1,53 @@
+#include<stdio.h>
+int arr[10],size=10,top=-1;
+void push()
+{
+	int data;
+	if(top-1<size)
+	{
+		printf("enter the data\n");
+		top=top+1;
+		scanf("%d",&arr[top]);
+	}
+	else
+	{
+		printf("stack overflow: \n");
+		exit(0);
+	}
+}
+void pop()
+{
+	if(top>=0)
+	{
+		printf("the poped data is : %d \n",arr[top]);
+		arr[top]=0;
+		top=top-1;
+	}
+	else
+	{
+		printf("stack underflow: \n");
+		exit(0);
+	}
+}
+void main()
+{
+	char ch='y';
+	while(ch=='y')
+	{
+		printf("to insert enter 'i' and to remove enter 'r' :-  ");
+		scanf(" %c",&ch);
+		if(ch=='i')
+		{
+			push();
+		}
+		else if(ch=='r')
+			pop();
+		else
+		{
+			printf("wrong choice enter again\n");
+			main();
+		}
+		printf("enter 'y' to insert or remove again : ");
+		scanf(" %c",&ch);
+	}
+}
